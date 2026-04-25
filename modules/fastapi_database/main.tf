@@ -23,6 +23,13 @@ resource "azurerm_postgresql_flexible_server_database" "main" {
   charset   = "UTF8"
 }
 
+resource "azurerm_postgresql_flexible_server_database" "test" {
+  name      = "${var.database_name}_test"
+  server_id = azurerm_postgresql_flexible_server.main.id
+  collation = "en_US.utf8"
+  charset   = "UTF8"
+}
+
 resource "azurerm_postgresql_flexible_server_firewall_rule" "allow_all" {
   name             = "Allow-All-for-testing-purposes"
   server_id        = azurerm_postgresql_flexible_server.main.id
